@@ -70,7 +70,9 @@ public class PlayerMovement : MonoBehaviour
 
             rb.MovePosition(transform.position + move);
 
-            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+            Vector3 rotateDir = new Vector3(moveDir.x, 0, moveDir.y);
+
+            Quaternion targetRotation = Quaternion.LookRotation(rotateDir);
 
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
         }
