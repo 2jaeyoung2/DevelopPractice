@@ -12,6 +12,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float rotateSpeed;
 
+    [SerializeField]
+    private float groundStopDeceleration = 40f;
+
+    [SerializeField]
+    private float groundStopEpsilon = 0.05f;
+
 
     [Space(5)]
     [Header("Jump"), Space(5)]
@@ -43,21 +49,44 @@ public class PlayerMovement : MonoBehaviour
 
     private float lastGroundedTime = Mathf.NegativeInfinity;
 
+    private PlayerStateMachine stateMachine;
+
+    private IdleState idleState;
+
+    private LocomotionState locomotionState;
+
+    private AirborneState airborneState;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        stateMachine = new PlayerStateMachine();
+
+        idleState = new IdleState(this, stateMachine);
+
+        locomotionState = new LocomotionState(this, stateMachine);
+
+        airborneState = new AirborneState(this, stateMachine);
+    }
+
+    private void Start()
+    {
+        stateMachine.ChangeState(idleState);
     }
 
     private void Update()
     {
         GroundCheck();
+
+        stateMachine.HandleInput();
+
+        stateMachine.Tick();
     }
 
     private void FixedUpdate()
     {
-        Move();
-
-        Jump();
+        stateMachine.FixedTick();
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
@@ -80,15 +109,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (ctx.phase == InputActionPhase.Started)
         {
-            lastJumpPressedTime = Time.time; // 점프 입력 시각 기록 (점프 버퍼)
+            lastJumpPressedTime = Time.time;
         }
     }
 
-    private void Move()
+    public void Move()
     {
         if (moveDir != Vector2.zero)
         {
-            Vector3 move = moveSpeed * new Vector3(moveDir.x, 0, moveDir.y);
+            Vector3 move = (moveSpeed * Time.fixedDeltaTime) * new Vector3(moveDir.x, 0, moveDir.y);
 
             rb.MovePosition(transform.position + move);
 
@@ -96,16 +125,14 @@ public class PlayerMovement : MonoBehaviour
 
             Quaternion targetRotation = Quaternion.LookRotation(rotateDir);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * rotateSpeed);
         }
     }
 
-    private void Jump()
+    public void Jump()
     {
-        // 최근 jumpBufferTime 안에 점프 입력이 있었는지 확인
         bool hasBufferedJump = (Time.time - lastJumpPressedTime) <= jumpBufferTime;
 
-        // 코요테 조건
         bool canUseCoyote = (Time.time - lastGroundedTime) <= coyoteTime;
 
         if (hasBufferedJump == true && (isGrounded == true || canUseCoyote == true))
@@ -118,11 +145,49 @@ public class PlayerMovement : MonoBehaviour
 
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
-            // 점프를 이미 사용했으니 버퍼 초기화
             lastJumpPressedTime = Mathf.NegativeInfinity;
 
             lastGroundedTime = Mathf.NegativeInfinity;
         }
+    }
+
+    public void StopGroundDrift()
+    {
+        if (isGrounded == false)
+        {
+            return;
+        }
+
+        Vector3 v = rb.velocity;
+
+        Vector3 horizontal = new Vector3(v.x, 0f, v.z);
+
+        float speed = horizontal.magnitude;
+
+        if (speed <= groundStopEpsilon)
+        {
+            v.x = 0f;
+
+            v.z = 0f;
+
+            rb.velocity = v;
+
+            return;
+        }
+
+        float newSpeed = Mathf.MoveTowards(speed, 0f, groundStopDeceleration * Time.fixedDeltaTime);
+
+        float ratio = newSpeed / speed;
+
+        horizontal.x *= ratio;
+
+        horizontal.z *= ratio;
+
+        v.x = horizontal.x;
+
+        v.z = horizontal.z;
+
+        rb.velocity = v;
     }
 
     private void GroundCheck()
@@ -136,6 +201,18 @@ public class PlayerMovement : MonoBehaviour
             lastGroundedTime = Time.time;
         }
     }
+
+    public bool IsGrounded => isGrounded;
+
+    public bool IsMoving => isMoving;
+
+    public Vector2 MoveDir => moveDir;
+
+    public void ChangeToIdle() => stateMachine.ChangeState(idleState);
+
+    public void ChangeToLocomotion() => stateMachine.ChangeState(locomotionState);
+
+    public void ChangeToAirborne() => stateMachine.ChangeState(airborneState);
 
     private void OnDrawGizmosSelected()
     {
