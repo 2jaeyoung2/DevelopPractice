@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [Space(5)]
     [Header("Jump"), Space(5)]
     [SerializeField]
-    private float jumpForce = 5f;
+    private float jumpForce = 3f;
 
     [SerializeField]
     private LayerMask groundLayer;
@@ -36,10 +36,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float coyoteTime = 0.1f;
 
+    [Space(5)]
+    [Header("Air Control"), Space(5)]
+    [SerializeField]
+    private float airControl = 0.5f;
+
 
     private Rigidbody rb;
 
     private Vector2 moveDir;
+
+    private Vector3 groundNormal = Vector3.up;
 
     private bool isGrounded;
 
@@ -87,6 +94,8 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         stateMachine.FixedTick();
+
+        StickToGround();
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
@@ -115,17 +124,69 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move()
     {
-        if (moveDir != Vector2.zero)
+        if (moveDir == Vector2.zero)
         {
-            Vector3 move = (moveSpeed * Time.fixedDeltaTime) * new Vector3(moveDir.x, 0, moveDir.y);
+            return;
+        }
 
-            rb.MovePosition(transform.position + move);
+        // 입력 방향
+        Vector3 inputDir = new Vector3(moveDir.x, 0, moveDir.y).normalized;
 
-            Vector3 rotateDir = new Vector3(moveDir.x, 0, moveDir.y);
+        // 경사면 내적용(투영)
+        //Vector3 moveDirOnSlope = Vector3.ProjectOnPlane(inputDir, groundNormal).normalized;
 
-            Quaternion targetRotation = Quaternion.LookRotation(rotateDir);
+        Vector3 moveDirFinal;
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * rotateSpeed);
+        float speedMultiplier = 1f;
+
+        if (isGrounded == true)
+        {
+            moveDirFinal = Vector3.ProjectOnPlane(inputDir, groundNormal).normalized;
+
+            Vector3 slopeDir = Vector3.ProjectOnPlane(Vector3.down, groundNormal).normalized;
+
+            float dot = Vector3.Dot(moveDirFinal, slopeDir);
+
+            if (dot > 0.1f)
+            {
+                // 내려갈 때
+                speedMultiplier = 1.3f; // 임시 값 >> 기획에 따라 수정필요
+            }
+            else if (dot < -0.1f)
+            {
+                // 올라갈 때
+                speedMultiplier = 0.6f; // 임시 값 >> 기획에 따라 수정필요
+            }
+        }
+        else
+        {
+            moveDirFinal = inputDir;
+
+            speedMultiplier = 1f;
+        }
+        
+        Vector3 velocity = rb.velocity;
+
+        Vector3 targetVelocity = moveDirFinal * moveSpeed * speedMultiplier;
+
+        if (isGrounded == false)
+        {
+            targetVelocity.x *= airControl;
+
+            targetVelocity.z *= airControl;
+        }
+
+        targetVelocity.y = velocity.y;
+
+        rb.velocity = targetVelocity;
+
+        if (moveDirFinal.sqrMagnitude > 0.001f)
+        {
+            //Vector3 tempMoveDir = new Vector3(moveDirFinal.x, 0, moveDirFinal.y);
+
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirFinal);
+
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotateSpeed * Time.fixedDeltaTime));
         }
     }
 
@@ -139,9 +200,18 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 velocity = rb.velocity;
 
-            velocity.y = 0f;
+            Vector3 horizontal = new Vector3(velocity.x, 0, velocity.z);
 
-            rb.velocity = velocity; 
+            if (horizontal.sqrMagnitude > 0.001f)
+            {
+                horizontal = horizontal.normalized * moveSpeed;
+            }
+
+            rb.velocity = new Vector3(horizontal.x, 0f, horizontal.z);
+
+            //velocity.y = 0f;
+
+            //rb.velocity = velocity; 
 
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
@@ -194,12 +264,30 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 origin = transform.position + Vector3.up * 0.1f;
 
-        isGrounded = Physics.Raycast(origin, Vector3.down, groundCheckDistance, groundLayer);
-
-        if (isGrounded == true)
+        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, groundCheckDistance, groundLayer))
         {
+            isGrounded = true;
+
+            groundNormal = hit.normal;
+
             lastGroundedTime = Time.time;
         }
+        else
+        {
+            isGrounded = false;
+
+            groundNormal = Vector3.up;
+        }
+    }
+
+    private void StickToGround()
+    {
+        if (isGrounded == false)
+        {
+            return;
+        }
+
+        rb.AddForce(-groundNormal * 30f, ForceMode.Acceleration);
     }
 
     public bool IsGrounded => isGrounded;
