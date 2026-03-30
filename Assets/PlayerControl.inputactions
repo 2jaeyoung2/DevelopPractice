@@ -3,7 +3,7 @@
     "name": "PlayerControl",
     "maps": [
         {
-            "name": "PlayerMovement",
+            "name": "Player",
             "id": "a7980cfd-2b8d-4792-9d0b-b91d0ff18889",
             "actions": [
                 {
@@ -19,6 +19,15 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "c954986c-4ab3-4f56-891f-703dffd95769",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interaction",
+                    "type": "Button",
+                    "id": "ed48ac02-6527-43b6-8661-949e77d2b98a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -89,6 +98,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40159f85-7af3-4f7f-ab28-8a561e212dae",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
