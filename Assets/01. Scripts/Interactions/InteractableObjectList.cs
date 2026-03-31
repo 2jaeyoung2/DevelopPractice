@@ -35,4 +35,12 @@ public class InteractableObjectList
             }
         }
     }
+
+    public void ShowAllInteractables()
+    {
+        foreach (var obj in objectsList)
+        {
+            // TODO: 범위 내에 아이템이나 상호작용 요소가 많을 때 리스트 보여주기
+        }
+    }
 }

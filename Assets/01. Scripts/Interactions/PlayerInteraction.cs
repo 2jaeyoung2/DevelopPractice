@@ -7,8 +7,6 @@ public class PlayerInteraction : MonoBehaviour
 {
     private InteractableObjectList interactableObjList;
 
-    private Collider interactionCollider;
-
     private void Start()
     {
         interactableObjList = new InteractableObjectList();
