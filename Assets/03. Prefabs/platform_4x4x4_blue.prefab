@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2219815883822671095}
   - component: {fileID: 2705053674034402572}
   - component: {fileID: 7456758900104497202}
+  - component: {fileID: 3305405859699833107}
   m_Layer: 0
-  m_Name: platform_4x4x4
+  m_Name: platform_4x4x4_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 348165872535452956}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.44, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3305405859699833107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348165872535452956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96f812be4aa31246be5293b7d0b83d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileType: 2
