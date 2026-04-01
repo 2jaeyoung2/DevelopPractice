@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entries:
   - tileType: 1
-    prefab: {fileID: 2054114377805525871, guid: 3871f938f11c0794594fab7b26949d59,
+    prefab: {fileID: 7374930999594668653, guid: 86f2d7d123343e34ea9a0676c9da8a78,
       type: 3}
   - tileType: 2
-    prefab: {fileID: 348165872535452956, guid: d6b6e132486cd4f47a190094fbb2cff3, type: 3}
+    prefab: {fileID: 8454230546576002777, guid: 2db4302524d04e841937d9f925508d0e,
+      type: 3}
