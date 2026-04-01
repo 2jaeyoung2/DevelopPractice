@@ -28,9 +28,11 @@ public class MapGenerator : MonoBehaviour
     {
         ClearMap();
 
-        for (int y = 0; y < mapData.height; y++)
+        mapData.Parse();
+
+        for (int y = 0; y < mapData.Height; y++)
         {
-            for (int x = 0; x < mapData.width; x++)
+            for (int x = 0; x < mapData.Width; x++)
             {
                 TileType type = mapData.GetTile(x, y);
 
