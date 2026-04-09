@@ -94,8 +94,6 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
-        Debug.Log(nearestPos.position);
-
         return nearest;
     }
 
