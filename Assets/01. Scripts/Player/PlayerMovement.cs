@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Game System")]
+    [SerializeField]
+    private GameTimeSystem timeSystem;
+
     [Header("Movement"), Space(5)]
     [SerializeField]
     private float moveSpeed;
@@ -102,15 +106,24 @@ public class PlayerMovement : MonoBehaviour
     {
         if (ctx.phase == InputActionPhase.Performed)
         {
-            isMoving = true;
-
             moveDir = ctx.ReadValue<Vector2>();
+
+            isMoving = moveDir.sqrMagnitude > 0.01f;
         }
         else
         {
             isMoving = false;
 
             moveDir = Vector2.zero;
+        }
+
+        if (timeSystem != null)
+        {
+            timeSystem.SetMoving(isMoving);
+        }
+        else
+        {
+            Debug.LogWarning("TimeSystem missing");
         }
     }
 
