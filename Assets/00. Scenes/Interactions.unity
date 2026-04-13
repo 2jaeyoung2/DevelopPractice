@@ -240,6 +240,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ab7d4c83d291142a68dacdd736b872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &290894923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 290894925}
+  - component: {fileID: 290894924}
+  m_Layer: 0
+  m_Name: UI Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &290894924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290894923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d75043eb54c1edf418e20d30d119f43d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeText: {fileID: 450879980}
+--- !u!4 &290894925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290894923}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.29782605, y: -1.5018959, z: -17.07132}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &412742040
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +957,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1255034631}
   - component: {fileID: 1255034629}
-  - component: {fileID: 1255034630}
   m_Layer: 0
   m_Name: InGame Time Manager
   m_TagString: Untagged
@@ -929,24 +973,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1255034628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f43cc0d1a062c64daae1a06dbf4d8fc, type: 3}
+  m_Script: {fileID: 11500000, guid: d2e43a69e393a1240be593d4a72b06d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   secondsPerMinute: 2
---- !u!114 &1255034630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255034628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d75043eb54c1edf418e20d30d119f43d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeText: {fileID: 450879980}
-  timeSystem: {fileID: 1255034629}
+  timeScaleTransitionsDuration: 0.8
 --- !u!4 &1255034631
 Transform:
   m_ObjectHideFlags: 0
@@ -1376,11 +1407,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 456888443319485390, guid: ef304e123adb70d428590714b3605c06,
-        type: 3}
-      propertyPath: timeSystem
-      value: 
-      objectReference: {fileID: 1255034629}
     - target: {fileID: 529021315056717825, guid: ef304e123adb70d428590714b3605c06,
         type: 3}
       propertyPath: m_Name
@@ -1749,6 +1775,7 @@ SceneRoots:
   - {fileID: 1090542884}
   - {fileID: 412742042}
   - {fileID: 1255034631}
+  - {fileID: 290894925}
   - {fileID: 6151154810710034532}
   - {fileID: 2094000201}
   - {fileID: 1874788568}

@@ -5,10 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Game System")]
-    [SerializeField]
-    private GameTimeSystem timeSystem;
-
     [Header("Movement"), Space(5)]
     [SerializeField]
     private float moveSpeed;
@@ -117,9 +113,9 @@ public class PlayerMovement : MonoBehaviour
             moveDir = Vector2.zero;
         }
 
-        if (timeSystem != null)
+        if (GameTimeManager.Instance != null)
         {
-            timeSystem.SetMoving(isMoving);
+            GameTimeManager.Instance.SetMoving(isMoving);
         }
         else
         {

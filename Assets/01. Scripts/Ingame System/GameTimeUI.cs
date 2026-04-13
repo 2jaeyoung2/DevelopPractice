@@ -8,32 +8,22 @@ public class GameTimeUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI timeText;
 
-    [SerializeField]
-    private GameTimeSystem timeSystem;
-
     private void Awake()
     {
         if (timeText == null)
         {
             Debug.LogError("TimeText is not assigned.");
         }
+    }
 
-        if (timeSystem == null)
-        {
-            Debug.LogError("GameTimeSystem is not assigned.");
-
-            return;
-        }
-
-        timeSystem.OnTimeChanged += UpdateTimeUI;
+    private void Start()
+    {
+        GameTimeManager.Instance.OnTimeChanged += UpdateTimeUI;
     }
 
     private void OnDestroy()
     {
-        if (timeSystem != null)
-        {
-            timeSystem.OnTimeChanged -= UpdateTimeUI;
-        }
+        GameTimeManager.Instance.OnTimeChanged -= UpdateTimeUI;
     }
 
     private void UpdateTimeUI(int hour, int minute)
