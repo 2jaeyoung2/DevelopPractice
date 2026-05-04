@@ -5,6 +5,7 @@ using TMPro;
 
 public class GameTimeUI : MonoBehaviour
 {
+    [Tooltip("인게임 시간을 표시하는 텍스트")]
     [SerializeField]
     private TextMeshProUGUI timeText;
 
@@ -28,7 +29,7 @@ public class GameTimeUI : MonoBehaviour
 
     private void UpdateTimeUI(int hour, int minute)
     {
-        // 00:00 형식
-        timeText.text = $"{hour:00}:{minute:00}";
+        // 00h 00m 형식
+        timeText.text = $"{hour:00}h {minute:00}m";
     }
 }

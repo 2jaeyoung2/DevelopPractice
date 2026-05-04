@@ -8,11 +8,13 @@ public class GameTimeManager : MonoBehaviour
     public static GameTimeManager Instance { get; private set; }
 
     [Header("Time Settings")]
+    [Tooltip("현실 시간 기준 '게임 내 1분'이 흐르는 데 걸리는 시간(초). 값이 작을수록 게임 시간이 더 빠르게 흐름 (예: 2 = 2초에 1분)")]
     [SerializeField]
-    private float secondsPerMinute = 2.5f;
+    private float secondsPerMinute = 2f;
 
+    [Tooltip("시간 흐름 배율(_ingameTimeScale)이 목표값으로 전환될 때 걸리는 기본 시간(초). 이동 시작/정지 시 시간 흐름이 부드럽게 변화하는 속도를 제어")]
     [SerializeField]
-    private float timeScaleTransitionsDuration = 0.8f;
+    private float timeScaleTransitionsDuration = 0.3f;
 
 
     private float accumulatedTime;
@@ -34,6 +36,7 @@ public class GameTimeManager : MonoBehaviour
 
     public bool IsMoving => _isMoving;
 
+    // 모든 움직이는 물체에 곱해야 함 (Update로 움직이는 것들)
     public float IngameTimeScale => _ingameTimeScale;
 
 
