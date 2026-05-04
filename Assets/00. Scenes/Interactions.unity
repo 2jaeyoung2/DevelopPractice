@@ -1533,11 +1533,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mannequin_Medium
       objectReference: {fileID: 0}
-    - target: {fileID: 529021315056717825, guid: ef304e123adb70d428590714b3605c06,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5118175389404732432, guid: ef304e123adb70d428590714b3605c06,
         type: 3}
       propertyPath: m_LocalPosition.x
