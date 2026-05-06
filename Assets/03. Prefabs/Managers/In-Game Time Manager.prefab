@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e43a69e393a1240be593d4a72b06d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsPerMinute: 2
+  secondsPerMinute: 0.5
   timeScaleTransitionsDuration: 0.3

@@ -64,6 +64,10 @@ public class PlayerMovement : MonoBehaviour
 
     private AirborneState airborneState;
 
+    private RetireState retireState;
+
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -75,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
         locomotionState = new LocomotionState(this, stateMachine);
 
         airborneState = new AirborneState(this, stateMachine);
+
+        retireState = new RetireState(this, stateMachine);
     }
 
     private void Start()
@@ -310,6 +316,8 @@ public class PlayerMovement : MonoBehaviour
     public void ChangeToLocomotion() => stateMachine.ChangeState(locomotionState);
 
     public void ChangeToAirborne() => stateMachine.ChangeState(airborneState);
+
+    public void ChaneToRetire() => stateMachine.ChangeState(retireState);
 
     private void OnDrawGizmosSelected()
     {

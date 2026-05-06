@@ -111,7 +111,10 @@ public class GameTimeManager : MonoBehaviour
             StopCoroutine(_timeScaleCoroutine);
         }
 
-        float target = moving ? 1f : 0f;
+        // 가만히 있을 때 0으로 시간 안흐르게 함.
+        // 기획에 따라 가만히 있을 때에도 시간이 조금은 흐르게 해야하나 싶으넫
+        // TODO: 0f >> nf
+        float target = moving ? 1f : 0.2f;
 
         _timeScaleCoroutine = StartCoroutine(TransitionTimeScale(target));
     }

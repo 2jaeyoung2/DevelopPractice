@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerStamina : MonoBehaviour
 {
     [SerializeField]
+    private PlayerMovement player;
+
+    [SerializeField]
     private float _maxStamina;
 
     [SerializeField]
@@ -18,6 +21,14 @@ public class PlayerStamina : MonoBehaviour
     private void Awake()
     {
         StaminaSettings(80, 80);
+    }
+
+    private void Start()
+    {
+        if (player == null)
+        {
+            player = GetComponent<PlayerMovement>();
+        }
     }
 
     private void StaminaSettings(float current, float max)
