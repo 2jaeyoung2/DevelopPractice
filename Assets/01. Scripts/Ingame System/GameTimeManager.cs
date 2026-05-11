@@ -36,8 +36,7 @@ public class GameTimeManager : MonoBehaviour
 
     public bool IsMoving => _isMoving;
 
-    // 모든 움직이는 물체에 곱해야 함 (Update로 움직이는 것들)
-    public float IngameTimeScale => _ingameTimeScale;
+    public float IngameTimeScale => _ingameTimeScale; // 모든 움직이는 물체에 곱해야 함 (Update로 움직이는 것들)
 
 
     private void Awake()
@@ -114,7 +113,8 @@ public class GameTimeManager : MonoBehaviour
         // 가만히 있을 때 0으로 시간 안흐르게 함.
         // 기획에 따라 가만히 있을 때에도 시간이 조금은 흐르게 해야하나 싶으넫
         // TODO: 0f >> nf
-        float target = moving ? 1f : 0.2f;
+        // 상황별로 수치 조절 필요할듯 예시)enum으로 상황 주어질 때 수치 변경하는 방식
+        float target = moving ? 1f : 0f;
 
         _timeScaleCoroutine = StartCoroutine(TransitionTimeScale(target));
     }
