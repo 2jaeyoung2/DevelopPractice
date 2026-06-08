@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 5638241174097485205}
   - component: {fileID: 456888443319485390}
   m_Layer: 3
-  m_Name: Mannequin_Medium
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,7 +424,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8ebb327964e19b74a88783a5a7219a91, type: 2}
+  - {fileID: 2100000, guid: 03a84be9957831c44a23422eabafbba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -837,7 +837,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8ebb327964e19b74a88783a5a7219a91, type: 2}
+  - {fileID: 2100000, guid: 03a84be9957831c44a23422eabafbba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1242,7 +1242,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8ebb327964e19b74a88783a5a7219a91, type: 2}
+  - {fileID: 2100000, guid: 03a84be9957831c44a23422eabafbba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1542,7 +1542,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8ebb327964e19b74a88783a5a7219a91, type: 2}
+  - {fileID: 2100000, guid: 03a84be9957831c44a23422eabafbba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1875,7 +1875,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8ebb327964e19b74a88783a5a7219a91, type: 2}
+  - {fileID: 2100000, guid: 03a84be9957831c44a23422eabafbba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2206,7 +2206,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8ebb327964e19b74a88783a5a7219a91, type: 2}
+  - {fileID: 2100000, guid: 03a84be9957831c44a23422eabafbba1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

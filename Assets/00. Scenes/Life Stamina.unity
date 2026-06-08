@@ -3094,10 +3094,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 456888443319485390, guid: ef304e123adb70d428590714b3605c06,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 529021315056717825, guid: ef304e123adb70d428590714b3605c06,
         type: 3}
       propertyPath: m_Name
-      value: Mannequin_Medium
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120135926895010458, guid: ef304e123adb70d428590714b3605c06,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563656524693911664, guid: ef304e123adb70d428590714b3605c06,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5118175389404732432, guid: ef304e123adb70d428590714b3605c06,
         type: 3}
@@ -4857,8 +4872,8 @@ SceneRoots:
   - {fileID: 1843474071}
   - {fileID: 419748413}
   - {fileID: 725676151}
-  - {fileID: 809272161}
   - {fileID: 554303472}
-  - {fileID: 1199475200}
   - {fileID: 486649647}
   - {fileID: 2033468615}
+  - {fileID: 809272161}
+  - {fileID: 1199475200}
