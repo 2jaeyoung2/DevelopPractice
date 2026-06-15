@@ -15,6 +15,11 @@ public class FloatingMovement : MonoBehaviour
 
     private float _phaseOffset;
 
+    private void Awake()
+    {
+        amplitude = Random.Range(0.1f, 0.3f);
+    }
+
     private void Start()
     {
         _startPosition = transform.position;
