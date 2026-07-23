@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 880598013405531225}
   - component: {fileID: 3876000335448267120}
   - component: {fileID: 3411819696391382809}
-  - component: {fileID: 4071971783948812799}
   m_Layer: 6
   m_Name: platform_4x4x4_green
   m_TagString: Untagged
@@ -106,16 +105,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 4, z: 4}
   m_Center: {x: 0, y: 2, z: -0.00000035762787}
---- !u!114 &4071971783948812799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2054114377805525871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a96f812be4aa31246be5293b7d0b83d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileType: 1
