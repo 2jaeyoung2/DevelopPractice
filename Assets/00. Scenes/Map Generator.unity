@@ -411,7 +411,7 @@ Camera:
   m_GameObject: {fileID: 709057626}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -559,9 +559,9 @@ MonoBehaviour:
   mapRoot: {fileID: 1471826675}
   normalFloorPrefab: {fileID: 2054114377805525871, guid: 3871f938f11c0794594fab7b26949d59,
     type: 3}
-  wallFloorPrefab: {fileID: 348165872535452956, guid: d6b6e132486cd4f47a190094fbb2cff3,
+  wallFloorPrefab: {fileID: 1238808696864120865, guid: fa0b616938250f04cb13c06dac285ddf,
     type: 3}
-  size: 10
+  size: 20
 --- !u!1 &961868100
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,7 +903,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 709057629}
   - {fileID: 271137825}
-  - {fileID: 895942005}
   - {fileID: 1177033642}
   - {fileID: 961868103}
+  - {fileID: 895942005}
   - {fileID: 1471826675}
