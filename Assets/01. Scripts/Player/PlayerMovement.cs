@@ -144,10 +144,10 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        // ÀÔ·Â ¹æÇâ
+        // ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½
         Vector3 inputDir = new Vector3(moveDir.x, 0, moveDir.y).normalized;
 
-        // °æ»ç¸é ³»Àû¿ë(Åõ¿µ)
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
         //Vector3 moveDirOnSlope = Vector3.ProjectOnPlane(inputDir, groundNormal).normalized;
 
         Vector3 moveDirFinal;
@@ -164,13 +164,13 @@ public class PlayerMovement : MonoBehaviour
 
             if (dot > 0.1f)
             {
-                // ³»·Á°¥ ¶§
-                speedMultiplier = 1.3f; // ÀÓ½Ã °ª >> ±âÈ¹¿¡ µû¶ó ¼öÁ¤ÇÊ¿ä
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+                speedMultiplier = 1.3f; // ï¿½Ó½ï¿½ ï¿½ï¿½ >> ï¿½ï¿½È¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½
             }
             else if (dot < -0.1f)
             {
-                // ¿Ã¶ó°¥ ¶§
-                speedMultiplier = 0.6f; // ÀÓ½Ã °ª >> ±âÈ¹¿¡ µû¶ó ¼öÁ¤ÇÊ¿ä
+                // ï¿½Ã¶ï¿½ ï¿½ï¿½
+                speedMultiplier = 0.6f; // ï¿½Ó½ï¿½ ï¿½ï¿½ >> ï¿½ï¿½È¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½
             }
         }
         else
@@ -180,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
             speedMultiplier = 1f;
         }
         
-        Vector3 velocity = rb.velocity;
+        Vector3 velocity = rb.linearVelocity;
 
         Vector3 targetVelocity = moveDirFinal * moveSpeed * speedMultiplier;
 
@@ -193,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
 
         targetVelocity.y = velocity.y;
 
-        rb.velocity = targetVelocity;
+        rb.linearVelocity = targetVelocity;
 
         if (moveDirFinal.sqrMagnitude > 0.001f)
         {
@@ -213,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (hasBufferedJump == true && (isGrounded == true || canUseCoyote == true))
         {
-            Vector3 velocity = rb.velocity;
+            Vector3 velocity = rb.linearVelocity;
 
             Vector3 horizontal = new Vector3(velocity.x, 0, velocity.z);
 
@@ -222,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
                 horizontal = horizontal.normalized * moveSpeed;
             }
 
-            rb.velocity = new Vector3(horizontal.x, 0f, horizontal.z);
+            rb.linearVelocity = new Vector3(horizontal.x, 0f, horizontal.z);
 
             //velocity.y = 0f;
 
@@ -243,7 +243,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        Vector3 v = rb.velocity;
+        Vector3 v = rb.linearVelocity;
 
         Vector3 horizontal = new Vector3(v.x, 0f, v.z);
 
@@ -255,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
 
             v.z = 0f;
 
-            rb.velocity = v;
+            rb.linearVelocity = v;
 
             return;
         }
@@ -272,7 +272,7 @@ public class PlayerMovement : MonoBehaviour
 
         v.z = horizontal.z;
 
-        rb.velocity = v;
+        rb.linearVelocity = v;
     }
 
     private void GroundCheck()
